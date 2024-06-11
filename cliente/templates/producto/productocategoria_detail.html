@@ -1,0 +1,18 @@
+{% extends 'core/base.html' %}
+
+{% block titulo %}
+<h1 class="logout">Productos: Detalle de una Categoría de Producto</h1>
+{% endblock titulo %}
+
+{% block contenido %}
+
+    <ul>
+        <li>Nombre: {{ object.nombre }}</li>
+        <li>Descripción: {{ object.descripcion }}</li>
+    </ul>
+
+    <div class="btn btn-secondary" role="button">
+        <a href="{% url 'producto:productocategoria_list' %}">Volver</a>
+    </div>
+
+{% endblock contenido %}
