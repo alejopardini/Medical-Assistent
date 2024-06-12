@@ -3,15 +3,15 @@ from django.contrib import admin
 # Register your models here.
 from . import models
 
-admin.site.site_title = "clientes"
+admin.site.site_title = "pacientes"
 
 
-class ClienteCategoriaAdmin(admin.ModelAdmin):
+class PacienteCategoriaAdmin(admin.ModelAdmin):
     list_display = ("nombre", "descripcion")
     list_display_links = ("nombre",)
 
 
-class ClienteAdmin(admin.ModelAdmin):
+class PacienteAdmin(admin.ModelAdmin):
     list_display = (
         "categoria_id",
         "nombre",
@@ -27,5 +27,5 @@ class ClienteAdmin(admin.ModelAdmin):
     date_hierarchy = "fecha_actualizacion"
 
 
-admin.site.register(models.ClienteCategoria, ClienteCategoriaAdmin)
-admin.site.register(models.Cliente, ClienteAdmin)
+admin.site.register(models.PacienteCategoria,PacienteCategoriaAdmin)
+admin.site.register(models.Paciente, PacienteAdmin)

@@ -12,11 +12,11 @@ def home(request):
 def about(request):
     return render(request, "core/about.html")
 
-def cliente(request):
-    return render(request, "core/cliente.html")
+def paciente(request):
+    return render(request, "core/paciente.html")
 
 def editar_producto(request):
-    return render(request, "cliente/index.html")
+    return render(request, "paciente/index.html")
 
 class CustomLoginView(LoginView):
     authentication_form = CustomAuthenticationForm

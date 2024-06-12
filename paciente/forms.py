@@ -2,9 +2,9 @@ from django import forms
 
 from . import models
 
-class ClienteCategoriaForm(forms.ModelForm):
+class PacienteCategoriaForm(forms.ModelForm):
     class Meta:
-        model = models.ClienteCategoria
+        model = models.PacienteCategoria
         fields = "__all__"
         widgets = {
             "nombre": forms.TextInput(attrs={"class": "form-control"}),
@@ -12,9 +12,9 @@ class ClienteCategoriaForm(forms.ModelForm):
         }
 
 
-class ClienteForm(forms.ModelForm):
+class PacienteForm(forms.ModelForm):
     class Meta:
-        model = models.Cliente
+        model = models.Paciente
         fields = "__all__"
         widgets = {
             "nombre": forms.TextInput(attrs={"class": "form-control"}),

@@ -13,10 +13,10 @@
                     <a class="nav-link {% if request.path == '/about/' %} active {% endif %}" href="{% url 'core:about' %}">Nosotros</a>
                 </li>
                 <li>
-                    <a class="nav-link {% if request.path == '/about/' %} active {% endif %}" href="{% url 'core:cliente' %}">Clientes</a>
+                    <a class="nav-link {% if request.path == '/about/' %} active {% endif %}" href="{% url 'core:paciente' %}">Pacientes</a>
                 </li>
                 {% if user.is_staff %}
-                <li><a class="nav-link {% if request.path == '/about/' %} active {% endif %}" href="{% url 'cliente:editar_producto' %}">Editar Productos</a></li>
+                <li><a class="nav-link {% if request.path == '/about/' %} active {% endif %}" href="{% url 'paciente:editar_producto' %}">Editar Productos</a></li>
                 {% endif %}
                 {% if user.is_authenticated %}
 

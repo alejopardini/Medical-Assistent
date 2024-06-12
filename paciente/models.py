@@ -2,8 +2,8 @@ from django.db import models
 from django.utils import timezone
 
 
-class ClienteCategoria(models.Model):
-    """Categorías de Clientes"""
+class PacienteCategoria(models.Model):
+    """Categorías de Pacientes"""
 
     nombre = models.CharField(max_length=200, unique=True)
     descripcion = models.CharField(max_length=250, null=True, blank=True, verbose_name="descripción")
@@ -13,13 +13,13 @@ class ClienteCategoria(models.Model):
         return self.nombre
 
     class Meta:
-        verbose_name = "categoría de Clientes"
-        verbose_name_plural = "categorías de Clientes"
+        verbose_name = "categoría de Paciente"
+        verbose_name_plural = "categorías de Pacientes"
 
 
-class Cliente(models.Model):
+class Paciente(models.Model):
     categoria_id = models.ForeignKey(
-        ClienteCategoria, null=True, blank=True, on_delete=models.SET_NULL, verbose_name="categoría de producto"
+        PacienteCategoria, null=True, blank=True, on_delete=models.SET_NULL, verbose_name="categoría de producto"
     )
     nombre = models.CharField(max_length=100)
     unidad_medida = models.CharField(max_length=100)
@@ -34,5 +34,5 @@ class Cliente(models.Model):
         return f"{self.nombre} ({self.unidad_medida}) ${self.precio:.2f}"
 
     class Meta:
-        verbose_name = "Cliente"
-        verbose_name_plural = "Clientes"
+        verbose_name = "Paciente"
+        verbose_name_plural = "Pacientes"
