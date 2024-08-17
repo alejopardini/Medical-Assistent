@@ -1,12 +1,21 @@
 ## Introducción
 
-Este proyecto es una aplicación web desarrollada en Django que permite gestionar un catálogo de productos como quesos, cervezas artesanales, promociones y gin artesanal. Incluye funcionalidades tanto para usuarios comunes como para administradores.
+Este proyecto es una aplicación web desarrollada en Django que permite gestionar turnos, base de datos de pacientes, y notificaciones a los pacientes entre otras cosas. Incluye funcionalidades especiales para administradores, pero también para usuarios, pudiendo filtrar sus funcionalidades según especificaciones del administrador.
 
 ## Requisitos del Sistema
 
 - Python 3.x
-- Django 3.x o superior
 - SQLite3 (por defecto)
+- celery 5.4.0
+- Django 5.0.6
+- django-allauth 0.63.3
+- django-celery 3.1.17
+- django-celery-beat 2.6.0
+- django-timezone-field 7.0
+- djlint 1.34.1
+- pillow 10.3.0
+- pytz 2024.1
+- twilio 9.2.3
 - Navegador web moderno
 
 Funcionalidades generales
@@ -15,29 +24,25 @@ Lista las principales funcionalidades del proyecto y cómo acceder a ellas.
 -Inicio: Acceder a la página principal del proyecto.
 URL: /
 
--Nosotros: Ver información sobre el emprendimiento
+-Nosotros: Ver información sobre la App
 URL: /about/
 
--Editar Productos: (CRUD) Editar, agregar o borrar productos/categorias de productos presentes en la base de datos. Desde aca se puede modificar la base de datos solo si el LOGIN es una administrador. 
-URL: /editar_productos/
-
--Productos: aca figuran las distintas categorias de productos a las cuales se puede acceder individualmente.
- -Quesos: pruducto/quesos.html
- -Cervezas Artesanales: pruducto/cervezas.html
- -Promociones: pruducto/promociones.html
- -Gin Artesanal: pruducto/gin.html
+-Pacientes: aca figuran los pacientes registrados, con sus detalles, archivos cargados y su historial.
+-Usuarios:
 
 Funcionalidades de Administrador
-El proyecto incluye una interfaz de administrador que permite gestionar los datos del sistema de forma sencilla. Tambien nos permite navegar como administrar por la pagina comunmente si usamos el login, y hacer cambios en los productos desde ahi, pero no de los usuarios
-
+El proyecto incluye una interfaz de administrador que permite gestionar los datos del sistema de forma sencilla. Tambien nos permite navegar como administrar por la pagina comunmente si usamos el login, y hacer cambios desde ahi.
    Acceso al Administrador
    -URL de administración del proyecto: http://localhost:8000/admin/.
    -Ingresar credenciales de superusuario para acceder al panel de administración.
 
    Funcionalidades Disponibles
-   -Productos y categorías: Permite administrar los productos y castegorías disponibles en el sistema
-   -Usuarios: Permite gestionar los usuarios registrados en el sistema y ver su información (nombre, apellido, email, etc)
-   
+   -Paciente: Permite administrar los productos y castegorías disponibles en el sistema
+   -Usuarios: Permite gestionar los usuarios registrados en el sistema y ver su información (NO DISPONIBLE)
+   -Clientes: Permite gestionar los clientes registrados en el sistema y ver su información
+   -Turnos: Permite gestionar los turnos de los pacientes registrados.
+
+
    Acceso al Panel de Administración
    -El panel de administración se puede acceder mediante la URL /admin/ del proyecto.
 
