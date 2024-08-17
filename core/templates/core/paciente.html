@@ -1,0 +1,80 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block titulo %}
+<div class="row gx-4 gx-lg-5 align-items-center">
+    <div class="col-lg-12 text-center">
+        <h1 class="font-weight-light text-white">Pacientes</h1>
+    </div>
+</div>
+{% endblock titulo %}
+{% block contenido %}
+
+<!-- Pacientes -->
+
+<!-- Imagen Principal y Tarjetas -->
+<section class="mb-5 mt-4">
+    <div class="container">
+        <div class="row gx-4 gx-lg-5 align-items-start">
+            <div class="col-lg-6 mb-4">
+                <img class="img-fluid" src="{% static 'core/img/pacientes.png' %}" alt="Pacientes" />
+            </div>
+            <div class="col-lg-6">
+                <div class="row gx-4 gx-lg-5 align-items-stretch">
+                    <div class="col-md-6 mb-4">
+                        <div class="card card-custom h-100">
+                            <div class="card-body">
+                                <h2 class="card-title">Lista de pacientes</h2>
+                                <p class="card-text">Hacé click aquí para ver el listado de pacientes.</p>
+                            </div>
+                            <div class="card-footer">
+                                <a class="btn btn-secondary btn-sm" href="{% url 'paciente:paciente_list' %}">Ver</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                        <div class="card card-custom h-100">
+                            <div class="card-body">
+                                <h2 class="card-title">Crear paciente</h2>
+                                <p class="card-text">Hacé click para crear un nuevo paciente.</p>
+                            </div>
+                            <div class="card-footer">
+                                <a class="btn btn-secondary btn-sm" href="{% url 'paciente:paciente_create' %}">Crear</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                        <div class="card card-custom h-100">
+                            <div class="card-body">
+                                <h2 class="card-title">Lista de turnos</h2>
+                                <p class="card-text">Hacé click aquí para ver los turnos en el calendario.</p>
+                            </div>
+                            <div class="card-footer">
+                                <a class="btn btn-secondary btn-sm" href="{% url 'turnos:listar_turnos' %}">Ver</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                        <div class="card card-custom h-100">
+                            <div class="card-body">
+                                <h2 class="card-title">Crear turno</h2>
+                                <p class="card-text">Hacé click aquí para crear un turno nuevo.</p>
+                            </div>
+                            <div class="card-footer">
+                                <a class="btn btn-secondary btn-sm" href="{% url 'turnos:crear_turno' %}">Crear</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Botón Volver a Inicio -->
+<section class="mb-5 text-center">
+    <div class="container">
+        <a class="btn btn-secondary" href="{% url 'core:home' %}" role="button">Volver a Inicio</a>
+    </div>
+</section>
+
+{% endblock contenido %}

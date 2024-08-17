@@ -1,0 +1,46 @@
+{% extends 'core/base.html' %}
+
+{% block titulo %}
+    <h1 class="text-center mb-4">Detalle del Paciente</h1>
+{% endblock titulo %}
+
+{% block contenido %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <h2>{{ object.nombre|title }} {{ object.apellido|title }}</h2>
+            <p><strong>Email:</strong> {{ object.email }}</p>
+            <p><strong>Celular:</strong> {{ object.celular }}</p>
+            <p><strong>Fecha de nacimiento:</strong> {{ object.fecha_nacimiento|date:"d/m/Y" }}</p>
+            <p><strong>Edad:</strong> {{ object.calcular_edad }}</p>
+            <p><strong>Historia Clínica:</strong> {{ object.historia_clinica }}</p>
+
+            <h3>Archivos Adjuntos</h3>
+            <ul>
+                {% for archivo in object.archivos.all %}
+                    <li>
+                        <a href="{{ adjunto.archivo.url }}" target="_blank">{{ adjunto.nombre }}</a>
+                    </li>
+                {% empty %}
+                    <li>No hay archivos adjuntos.</li>
+                {% endfor %}
+            </ul>
+
+            <h3 class="mt-4">Historial de Consultas</h3>
+            <!-- DEJAMOS COMENTADO HASTA ARMAR LA PARTE DE CONSULTAS <ul>
+                {% for consulta in consultas %}
+                    <li>{{ consulta.fecha|date:"d/m/Y" }} - {{ consulta.motivo }}</li>
+                {% empty %}
+                    <li>No hay consultas registradas.</li>
+                {% endfor %}
+            </ul>
+-->
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-4">
+                <a href="{% url 'paciente:paciente_update' object.id %}" class="btn btn-warning me-md-2">Editar Paciente</a>
+                <a href="{% url 'paciente:paciente_delete' object.id %}" class="btn btn-danger me-md-2">Eliminar Paciente</a>
+                <a href="{% url 'paciente:paciente_list' %}" class="btn btn-secondary">Volver a la lista</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock contenido %}

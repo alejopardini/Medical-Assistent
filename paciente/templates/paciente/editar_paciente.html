@@ -1,0 +1,20 @@
+{% extends 'core/base.html' %}
+
+{% block titulo %}
+    <h1 class="text-center mb-4">Gestionar Pacientes</h1>
+{% endblock titulo %}
+
+{% block contenido %}
+<div class="container my-5">
+    <h3 class="pb-3 border-bottom">Pacientes</h3>
+    <div class="d-grid gap-2 d-md-flex justify-content-md-start mb-4">
+        <a class="btn btn-primary me-md-2" href="{% url 'paciente:paciente_create' %}" role="button">Crear Paciente</a>
+        <a class="btn btn-outline-primary" href="{% url 'paciente:paciente_list' %}" role="button">Listar Pacientes</a>
+    </div>
+    <div class="text-center mt-4">
+        <a class="btn btn-secondary" href="{% url 'core:home' %}" role="button">Volver a Inicio</a>
+    </div>
+</div>
+{% endblock contenido %}
+
+

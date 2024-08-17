@@ -1,0 +1,56 @@
+{% extends 'core/base.html' %}
+
+{% block titulo %}
+    <h1 class="text-center mb-4">Lista de Pacientes</h1>
+{% endblock titulo %}
+
+{% block contenido %}
+<div class="container my-5">
+    <div class="py-4">
+        <form class="input-group mb-3"
+              action="{% url 'paciente:paciente_list' %}"
+              method="get">
+            <input type="text"
+                   class="form-control"
+                   name="consulta"
+                   placeholder="Buscar..."
+                   aria-label="Buscar">
+            <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Buscar</button>
+        </form>
+    </div>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th scope="col">Nombre</th>
+                <th scope="col">Apellido</th>
+                <th scope="col">Edad</th>
+                <th scope="col">Última Consulta</th>
+                <th scope="col">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for paciente in object_list %}
+                <tr>
+                    <td>{{ paciente.nombre|title }}</td> <!-- Capitaliza el nombre -->
+                    <td>{{ paciente.apellido|title }}</td> <!-- Capitaliza el apellido -->
+                    <td>{{ paciente.calcular_edad }}</td> <!-- Usamos el método para calcular la edad -->
+                    <td>{% if paciente.ultima_consulta %}{{ paciente.ultima_consulta|date:"d/m/Y" }}{% else %}No hay consultas{% endif %}</td> <!-- Mostramos la fecha de la última consulta -->
+                    <td>
+                        <a class="btn btn-info btn-sm me-1"
+                           href="{% url 'paciente:paciente_detail' paciente.id %}">Detalle</a>
+                        <a class="btn btn-warning btn-sm me-1"
+                           href="{% url 'paciente:paciente_update' paciente.id %}">Cambiar</a>
+                        <a class="btn btn-danger btn-sm"
+                           href="{% url 'paciente:paciente_delete' paciente.id %}">Borrar</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <div class="mt-4 text-center">
+        <a class="btn btn-secondary"
+           href="{% url 'core:paciente' %}"
+           role="button">Volver a Pacientes</a>
+    </div>
+</div>
+{% endblock contenido %}

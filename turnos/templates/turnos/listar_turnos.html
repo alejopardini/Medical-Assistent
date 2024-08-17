@@ -1,0 +1,42 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Listar Turnos{% endblock %}
+
+{% block contenido %}
+  <div class="container">
+    
+    <h1>Listar Turnos</h1>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Paciente</th>
+          <th>Fecha</th>
+          <th>Hora</th>
+          <th>Profesional</th>
+          <th>Estado</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for turno in turnos %}
+          <tr>
+            <td>{{ turno.paciente }}</td>
+            <td>{{ turno.fecha }}</td>
+            <td>{{ turno.hora }}</td>
+            <td>{{ turno.profesional }}</td>
+            <td>{{ turno.estado }}</td>
+            <td>
+              <a href="{% url 'turnos:detalle_turno' turno.id %}" class="btn btn-info btn-sm">Ver</a>
+              <a href="{% url 'turnos:editar_turno' turno.id %}" class="btn btn-warning btn-sm">Editar</a>
+              <a href="{% url 'turnos:eliminar_turno' turno.id %}" class="btn btn-danger btn-sm">Eliminar</a>
+            </td>
+          </tr>
+        {% empty %}
+          <tr>
+            <td colspan="6">No se encontraron turnos.</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+{% endblock %}
