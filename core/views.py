@@ -9,6 +9,9 @@ from .forms import CustomAuthenticationForm, CustomUserCreationForm
 def home(request):
     return render(request, "core/index.html")
 
+def turnos(request):
+    return render(request, "turnos/turnos.html")
+
 def about(request):
     return render(request, "core/about.html")
 

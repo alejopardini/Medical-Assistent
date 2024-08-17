@@ -1,43 +1,46 @@
+<!-- index.html -->
 {% extends 'core/base.html' %}
 {% load static %}
 {% block titulo %}
-    {% include 'core/components/titulo1.html' with titulo="Tigre Blanco Bebidas" %}
+    Inicio
 {% endblock titulo %}
 {% block contenido %}
-
-    {% if user.is_authenticated %}
-        {{ mensaje }}
-        <p class="fs-2">Bienvenido {{ user.username }}</p>
-    {% endif %}
-    <!-- Heading Row-->
     <div class="row gx-4 gx-lg-5 align-items-center my-5">
         <div class="col-lg-7">
-            <img class="img-fluid rounded mb-4 mb-lg-0"
-                 src="{% static 'core/img/tigre.png' %}"
-                 alt="tigre blanco" />
+            <img class="img-fluid rounded mb-4 mb-lg-0" src="{% static 'core/img/index.png' %}" alt="MedicalAssistent" />
         </div>
         <div class="col-lg-5">
-            <h1 class="font-weight-light ">Tigre Blanco Bebidas</h1>
+            <h1 class="font-weight-light d-flex justify-content-between">
+                Medical Assistent
+                {% if not user.is_authenticated %}
+                    <a href="{% url 'core:login' %}" class="btn btn-secondary align-self-center">Iniciar Sesión</a>
+                {% endif %}
+            </h1>
             <p>
-                Tigre Blanco es una innovadora plataforma dedicada a los entusiastas del gin, un lugar donde los amantes de esta espirituosa bebida pueden compartir sus experiencias, reseñas y recomendaciones sobre una amplia variedad de productos relacionados con el gin. Esta página no solo sirve como una guía completa para quienes buscan descubrir nuevos sabores y marcas, sino que también fomenta una comunidad activa y apasionada por el mundo del gin.
-                <br>Hace tu pedido por <a class="btn btn-primary"   href="https://wa.me/5492213993941"  target="_blank"> WhatsApp</a>
+                Es una aplicación diseñada exclusivamente para optimizar el trabajo del personal de la salud. Inicialmente pensada para Kinesiólogos y Quiroprácticos, pero con posibilidades de uso para otras disciplinas como la medicina, psicología o psicopedagogía entre otros. MedicalAssistent será tu asistente personal en tu computadora o celular, que facilitará la gestión de turnos, y donde también podrás organizar la historia clínica de los pacientes, acceder a material bibliográfico, y muchas cosas más de manera fácil, rápida y eficiente.
             </p>
-            
-        </div>
-    </div>
-    <!-- Call to Action-->
-    <div class="card text-white bg-secondary my-5 py-4 text-center">
-        <div class="card-body">
-            <p class="productos">
-                Registrate para recibir novedades de nuestros productos, promociones y descuentos!
+            <p>
+                Por cualquier problema, o sugerencia para mejorar la experiencia de usuario, siéntete libre de mandarnos un mensaje<br> 
+                <a class="btn btn-primary" href="https://wa.me/5492213993941" target="_blank">WhatsApp</a>
             </p>
         </div>
     </div>
-    <!-- Content Row-->
-    <div class="row gx-4 gx-lg-5">
-        {% include 'core/components/card.html' with titulo="Gin Artesanal" texto="El gin de la casa, hecho por sus propios dueños, innovando dia a dia gracias a ustedes y sus devoluciones. Vas a poder encontrar las distintas variedades que..." %}
-        {% include 'core/components/card2.html' with titulo="Quesos y embutidos" texto="Los quesos y embutidos que buscamos en Tigre Blanco están pensados para acompañar las distintas bebibas que vas a encontrar en nuestra página, traemos de Tandil y alrededores los mejores quesos y..." %}
-        {% include 'core/components/card3.html' with titulo="Cervezas" texto="En una exhaustiva búsqueda por todo el país seleccionamos las mejores cervezas de cada estilo para poder llevarlas a tu casa. Desde Bariloche hasta Buenos Aires..."%}
-        {% include 'core/components/card4.html' with titulo="Promociones semanales" texto="Encontrá aca las distintas promociones semanales que se van actualizando" %}
-    </div>
+
+    {% if user.is_authenticated %}
+        <p class="fs-2">Bienvenido {{ user.username }}</p>
+        <!-- Mostrar contenido solo si el usuario está autenticado -->
+        <!-- Call to Action-->
+        <div class="card text-white bg-secondary my-5 py-4 text-center">
+            <div class="card-body">
+                <p class="productos">Accesos útiles</p>
+            </div>
+        </div>
+        <!-- Content Row-->
+        <div class="row gx-4 gx-lg-5">
+            {% include 'core/components/card.html' with titulo="Lista de pacientes" texto="Hacé click aquí para ver el listado de pacientes." %}
+            {% include 'core/components/card2.html' with titulo="Crear paciente" texto="Hacé click para crear un nuevo paciente." %}
+            {% include 'core/components/card3.html' with titulo="Lista de turnos" texto="Hacé click aquí para ver los turnos en el calendario." %}
+            {% include 'core/components/card4.html' with titulo="Crear turno" texto="Hacé click aquí para crear un turno nuevo" %}
+        </div>
+    {% endif %}
 {% endblock contenido %}

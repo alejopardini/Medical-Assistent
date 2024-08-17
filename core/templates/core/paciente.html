@@ -1,79 +1,69 @@
 {% extends 'core/base.html' %}
 {% load static %}
 {% block titulo %}
-    {% include 'core/components/titulo1.html' with titulo="Medical Assistent" %}
+<div class="row gx-4 gx-lg-5 align-items-center">
+    <div class="col-lg-12 text-center">
+        <h1 class="font-weight-light text-white">Pacientes</h1>
+    </div>
+</div>
 {% endblock titulo %}
 {% block contenido %}
 
 <!-- Pacientes -->
-<section class="mb-5">
-    <div class="row gx-4 gx-lg-5 align-items-center">
-        <div class="col-lg-12 text-center">
-            <h1 class="font-weight-light">Pacientes</h1>
-        </div>
-    </div>
-</section>
-<!-- Imagen Principal -->
-<section class="mb-5">
-    <div class="row gx-4 gx-lg-5 align-items-center">
-        <div class="col-lg-12 text-center">
-            <img class="img-fluid rounded mb-4 mb-lg-0" src="{% static 'core/img/picada.png' %}" alt="Picada" />
-        </div>
-    </div>
-</section>
 
-
-
-<!-- Fila de Tarjetas 1 -->
-<section class="mb-5">
-    <div class="row gx-4 gx-lg-5 justify-content-center">
-        <div class="col-md-6 col-lg-5 mb-4">
-            <div class="card card-custom h-100">
-                <div class="card-body">
-                    <h2 class="card-title">Gin Artesanal</h2>
-                    <p class="card-text">El gin de la casa, hecho por sus propios dueños, innovando día a día gracias a ustedes y sus devoluciones. Vas a poder encontrar las distintas variedades que vamos experimentando para innovar.</p>
-                </div>
-                <div class="card-footer">
-                    <a class="btn btn-secondary btn-sm" href="{% url 'paciente:gin' %}">Ver más</a>
-                </div>
+<!-- Imagen Principal y Tarjetas -->
+<section class="mb-5 mt-4">
+    <div class="container">
+        <div class="row gx-4 gx-lg-5 align-items-start">
+            <div class="col-lg-6 mb-4">
+                <img class="img-fluid" src="{% static 'core/img/pacientes.png' %}" alt="Pacientes" />
             </div>
-        </div>
-        <div class="col-md-6 col-lg-5 mb-4">
-            <div class="card card-custom h-100">
-                <div class="card-body">
-                    <h2 class="card-title">Quesos y embutidos</h2>
-                    <p class="card-text">Los quesos y embutidos que buscamos en Tigre Blanco están pensados para acompañar las distintas bebidas que vas a encontrar en nuestra página, traemos de Tandil y alrededores los mejores quesos saborizados y clásicos que irán variando por temporada.</p>
-                </div>
-                <div class="card-footer">
-                    <a class="btn btn-secondary btn-sm" href="{% url 'paciente:quesos' %}">Ver más</a>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- Fila de Tarjetas 2 -->
-<section class="mb-5">
-    <div class="row gx-4 gx-lg-5 justify-content-center">
-        <div class="col-md-6 col-lg-5 mb-4">
-            <div class="card card-custom h-100">
-                <div class="card-body">
-                    <h2 class="card-title">Cervezas</h2>
-                    <p class="card-text">En una exhaustiva búsqueda por todo el país seleccionamos las mejores cervezas de cada estilo para poder llevarlas a tu casa. Desde Bariloche hasta Buenos Aires, recorriendo los puntos cerveceros más importantes de Argentina para ir variando los estilos y marcas cada temporada.</p>
-                </div>
-                <div class="card-footer">
-                    <a class="btn btn-secondary btn-sm" href="{% url 'paciente:cervezas' %}">Ver más</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-6 col-lg-5 mb-4">
-            <div class="card card-custom h-100">
-                <div class="card-body">
-                    <h2 class="card-title">Promociones semanales</h2>
-                    <p class="card-text">Encontrá acá las distintas promociones semanales que se van actualizando.</p>
-                </div>
-                <div class="card-footer">
-                    <a class="btn btn-secondary btn-sm" href="{% url 'paciente:promociones' %}">Ver más</a>
+            <div class="col-lg-6">
+                <div class="row gx-4 gx-lg-5 align-items-stretch">
+                    <div class="col-md-6 mb-4">
+                        <div class="card card-custom h-100">
+                            <div class="card-body">
+                                <h2 class="card-title">Lista de pacientes</h2>
+                                <p class="card-text">Hacé click aquí para ver el listado de pacientes.</p>
+                            </div>
+                            <div class="card-footer">
+                                <a class="btn btn-secondary btn-sm" href="{% url 'paciente:paciente_list' %}">Ver</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                        <div class="card card-custom h-100">
+                            <div class="card-body">
+                                <h2 class="card-title">Crear paciente</h2>
+                                <p class="card-text">Hacé click para crear un nuevo paciente.</p>
+                            </div>
+                            <div class="card-footer">
+                                <a class="btn btn-secondary btn-sm" href="{% url 'paciente:paciente_create' %}">Crear</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                        <div class="card card-custom h-100">
+                            <div class="card-body">
+                                <h2 class="card-title">Lista de turnos</h2>
+                                <p class="card-text">Hacé click aquí para ver los turnos en el calendario.</p>
+                            </div>
+                            <div class="card-footer">
+                                <a class="btn btn-secondary btn-sm" href="{% url 'turnos:listar_turnos' %}">Ver</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                        <div class="card card-custom h-100">
+                            <div class="card-body">
+                                <h2 class="card-title">Crear turno</h2>
+                                <p class="card-text">Hacé click aquí para crear un turno nuevo.</p>
+                            </div>
+                            <div class="card-footer">
+                                <a class="btn btn-secondary btn-sm" href="{% url 'turnos:crear_turno' %}">Crear</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -82,10 +72,8 @@
 
 <!-- Botón Volver a Inicio -->
 <section class="mb-5 text-center">
-    <div class="row gx-4 gx-lg-5 align-items-center">
-        <div class="col-lg-12">
-            <a class="btn btn-secondary" href="{% url 'core:home' %}" role="button">Volver a Inicio</a>
-        </div>
+    <div class="container">
+        <a class="btn btn-secondary" href="{% url 'core:home' %}" role="button">Volver a Inicio</a>
     </div>
 </section>
 

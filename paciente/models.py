@@ -1,38 +1,36 @@
 from django.db import models
 from django.utils import timezone
-
-
-class PacienteCategoria(models.Model):
-    """Categorías de Pacientes"""
-
-    nombre = models.CharField(max_length=200, unique=True)
-    descripcion = models.CharField(max_length=250, null=True, blank=True, verbose_name="descripción")
-
-    def __str__(self) -> str:
-        """Representa una instancia del modelo como una cadena de texto"""
-        return self.nombre
-
-    class Meta:
-        verbose_name = "categoría de Paciente"
-        verbose_name_plural = "categorías de Pacientes"
-
+from datetime import date
 
 class Paciente(models.Model):
-    categoria_id = models.ForeignKey(
-        PacienteCategoria, null=True, blank=True, on_delete=models.SET_NULL, verbose_name="categoría de producto"
-    )
     nombre = models.CharField(max_length=100)
-    unidad_medida = models.CharField(max_length=100)
-    cantidad = models.FloatField()
-    precio = models.FloatField()
-    descripcion = models.TextField(null=True, blank=True, verbose_name="descripción")
-    fecha_actualizacion = models.DateField(
-        null=True, blank=True, default=timezone.now, editable=False, verbose_name="fecha de actualización"
-    )
+    apellido = models.CharField(max_length=100)
+    email = models.EmailField(max_length=254, null=True, blank=True)
+    celular = models.CharField(max_length=20, null=True, blank=True)
+    historia_clinica = models.TextField(null=True, blank=True)
+    archivo = models.FileField(upload_to='pacientes/archivos/', null=True, blank=True)  # Asegúrate de que este campo esté aquí
+    fecha_inicio = models.DateField(null=True, blank=True)
+    ultima_consulta = models.DateField(null=True, blank=True)
+    fecha_nacimiento = models.DateField(null=True, blank=True)
+    discapacidad = models.BooleanField(default=False)
+    discapacidad_detalle = models.CharField(max_length=250, null=True, blank=True)
 
+    def calcular_edad(self):
+        if self.fecha_nacimiento is None:
+            return None  # O alguna otra lógica que quieras usar en caso de que no haya fecha de nacimiento
+        today = date.today()
+        return today.year - self.fecha_nacimiento.year - (
+            (today.month, today.day) < (self.fecha_nacimiento.month, self.fecha_nacimiento.day)
+        )
+    
     def __str__(self) -> str:
-        return f"{self.nombre} ({self.unidad_medida}) ${self.precio:.2f}"
+        return f"{self.nombre} {self.apellido}"
 
     class Meta:
         verbose_name = "Paciente"
         verbose_name_plural = "Pacientes"
+
+
+
+
+

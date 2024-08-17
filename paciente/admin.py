@@ -1,31 +1,25 @@
 from django.contrib import admin
+from .models import Paciente
+from consultas.models import Consulta
 
-# Register your models here.
-from . import models
+admin.site.site_title = "Gestión de Pacientes"
 
-admin.site.site_title = "pacientes"
-
-
-class PacienteCategoriaAdmin(admin.ModelAdmin):
-    list_display = ("nombre", "descripcion")
-    list_display_links = ("nombre",)
-
+class ConsultaInline(admin.TabularInline):
+    model = Consulta
+    extra = 0
 
 class PacienteAdmin(admin.ModelAdmin):
     list_display = (
-        "categoria_id",
         "nombre",
-        "unidad_medida",
-        "cantidad",
-        "precio",
-        "fecha_actualizacion",
+        "apellido",
+        "email",
+        "fecha_nacimiento",
     )
-    list_display_links = ("nombre",)
-    search_fields = ("nombre",)
-    ordering = ("categoria_id", "nombre")
-    list_filter = ("categoria_id",)
-    date_hierarchy = "fecha_actualizacion"
+    inlines = [ConsultaInline]
+    list_display_links = ("nombre", "apellido")
+    search_fields = ("nombre", "apellido")
+    ordering = ("nombre", "apellido")
+    date_hierarchy = "fecha_nacimiento"  # Asegúrate de que 'fecha_nacimiento' sea un campo en el modelo
 
-
-admin.site.register(models.PacienteCategoria,PacienteCategoriaAdmin)
-admin.site.register(models.Paciente, PacienteAdmin)
+admin.site.register(Paciente, PacienteAdmin)
+admin.site.register(Consulta)
